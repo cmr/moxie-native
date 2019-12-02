@@ -3,8 +3,7 @@ name = "moxie-native"
 version = "0.1.0"
 authors = ["Tiffany Bennett <tiffnixen@gmail.com>"]
 edition = "2018"
-[profile.dev]
-codegen-units=1
+
 [dependencies]
 winit = { version = "0.20.0-alpha4", features = ["stdweb" ]}
 gleam = "0.6.2"
