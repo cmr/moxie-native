@@ -7,15 +7,19 @@ use crate::style::DisplayType;
 use crate::util::equal_rc::EqualRc;
 use euclid::{Length, Point2D, SideOffsets2D, Size2D};
 use font_kit::family_name::FamilyName;
+use font_kit::handle::Handle;
 use font_kit::properties::Properties;
-use font_kit::source::SystemSource;
+use font_kit::sources::mem::MemSource;
 use moxie::embed::Runtime;
 use moxie::*;
 use skribo::{FontCollection, FontFamily, FontRef};
+use std::sync::Arc;
 
 mod block;
 mod inline;
 mod text;
+
+static REGULAR_FONT: &'static [u8] = include_bytes!("../../ComicNeue-Regular.ttf");
 
 pub struct LogicalPixel;
 pub type LogicalPoint = Point2D<f32, LogicalPixel>;
@@ -79,7 +83,8 @@ impl LayoutEngine {
     fn run_layout() -> EqualRc<LayoutTreeNode> {
         let collection = once!(|| {
             let mut collection = FontCollection::new();
-            let source = SystemSource::new();
+            let regular_handle = Handle::from_memory(Arc::new(REGULAR_FONT.to_vec()), 0);
+            let source = MemSource::from_fonts(vec![regular_handle].into_iter()).unwrap();
             let font = source
                 .select_best_match(&[FamilyName::SansSerif], &Properties::new())
                 .unwrap()

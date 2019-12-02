@@ -30,6 +30,9 @@ struct Notifier {
     tx: mpsc::Sender<()>,
 }
 
+// good thing there's only one thread
+unsafe impl Send for Notifier {}
+
 impl RenderNotifier for Notifier {
     fn clone(&self) -> Box<dyn RenderNotifier> {
         Box::new(Clone::clone(self))

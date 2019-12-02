@@ -17,6 +17,7 @@ defining UI similar to React.
 - Not based on immediate mode UI.
 - Targetted towards real world desktop applications.
 - Styling system for specifying the appearance of elements.
+- Runs in a browser with WebAssembly and a WebRender fork.
 
 ## Future plans
 
