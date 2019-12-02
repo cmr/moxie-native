@@ -16,9 +16,8 @@ font-kit = {git="https://github.com/cmr/font-kit.git", branch="web"}
 proc-macro-hack = "0.5"
 
 [dependencies.webrender]
-#git = "https://github.com/cmr/webrender.git"
-#branch = "web"
-path = "/Users/cmr/code/webrender/webrender"
+git = "https://github.com/cmr/webrender.git"
+branch = "web"
 
 [dependencies.illicit]
 git = "https://github.com/anp/moxie.git"
